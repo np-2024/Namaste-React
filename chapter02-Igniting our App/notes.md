@@ -1,0 +1,99 @@
+## 🚀 Igniting our App! ( Namaste-React ) 🚀
+
+## Code walkthrough:
+- In your `existing project`
+    - initialize `npm` into your repo
+        - `npm init`
+    - install `parcel`
+        - `npm i parcel`
+    - ignite your app with `parcel`
+        - `npx parcel index.html`
+    - add scripts for `“start”` and `“build”` with `parcel commands`
+    - add `.gitignore` file
+        - add `node_modules`, `parcel_cache` to remove them from adding into git
+    - add `browserlists` for configuring browsers for running you app
+    - build a production version of your code using `parcel build`
+    - remove CDN links of `react` from index.html file
+    - install `react` and `react-dom`
+        - `npm i react`
+        - `npm i react-dom`
+        - import `react` and `react-dom` from node_modules into your app.js file
+
+        ```sh
+        import React from "react"
+        import ReactDOM from "react-dom/client"
+        ```
+
+    - change `script` tag `type` attribute to `module` for allowing imports and exports
+
+        ```sh
+        <script type="module" src="app.js"></script>
+        ```
+## Assignment
+
+## Q ) What is NPM?
+NPM (Node Package Manager) is a package manager for Node.js packages or modules. It is used to install and manage dependencies in Node.js projects. It comes bundled with Node.js installation.
+
+## Q ) What is Parcel/Webpack? Why do we need it?
+**Parcel** and **Webpack** are both bundlers for JavaScript applications, but they serve slightly different purposes:
+
+- **Webpack**: A powerful and highly configurable bundler that can handle not only JavaScript but also other assets like CSS, images, and fonts. It is highly customizable via plugins and configuration.
+  
+- **Parcel**: A zero-config bundler that aims to be fast and easy to use. It supports various asset types out of the box and requires minimal configuration.
+
+We need bundlers like Parcel or Webpack to bundle our application's source code and assets into a format (typically a single or a few files) that can be efficiently served to browsers. This improves load times, reduces HTTP requests, and allows for optimizations like minification and transpilation.
+
+## Q ) What is .parcel-cache?
+`.parcel-cache` is a directory used by Parcel to store cached data for faster subsequent builds. It helps Parcel avoid recomputing assets unnecessarily between builds.
+
+## Q ) What is npx?
+`npx` is a package runner tool that comes with npm 5.2+ and higher. It allows you to execute Node.js packages without having to install them globally. It executes the specified command, either from a local `node_modules/.bin` directory or from a central cache, installing any packages needed in the process temporarily.
+
+## Q ) What is the difference between dependencies vs devDependencies?
+- **Dependencies**: These are packages required for the application to run. They are usually necessary in both development and production environments.
+  
+- **devDependencies**: These are packages that are only necessary for development and testing purposes, such as testing frameworks, build tools (like Webpack or Parcel), or transpilers. They are not required for the application to run in production.
+
+## Q ) What is Tree Shaking?
+Tree shaking is a technique used by bundlers like Webpack or Parcel to remove dead code (unused exports) from the production bundle. It relies on static analysis of the code to eliminate unused code paths, reducing the size of the bundle sent to the client.
+
+## Q ) What is Hot Module Replacement (HMR)?
+Hot Module Replacement is a feature in Webpack and some other bundlers that allows modules to be updated at runtime without the need for a full refresh. It helps in maintaining the application state while the application is being updated, providing a faster development experience.
+
+## Q ) List down your favorite 5 superpowers of Parcel and describe any 3 of them in your own words.
+Some superpowers of Parcel include:
+- **Zero Configuration**: Requires no configuration out of the box for most projects.
+- **Blazing Fast**: Uses multicore processing and caching to speed up build times.
+- **Supports Many File Types**: Handles various asset types like JavaScript, CSS, HTML, and images natively.
+
+## Q ) What is .gitignore? What should we add and not add into it?
+`.gitignore` is a file used by Git to determine which files and directories to ignore in version control operations. Typically, you should add files that are generated during the build process (like `node_modules/` and `dist/`) and sensitive files containing secrets or API keys. You should not add configuration files needed for the project or source code.
+
+## Q ) What is the difference between package.json and package-lock.json?
+- **package.json**: This file contains metadata about the project and lists the packages the project depends on. It also includes scripts to run various tasks and commands.
+  
+- **package-lock.json**: Introduced in npm 5, this file is automatically generated and stores an exact, deterministic record of the packages and their versions that npm has installed. It ensures that all developers working on the project get the same dependencies.
+
+## Q ) Why should I not modify package-lock.json?
+`package-lock.json` should not be manually modified because it is automatically generated and managed by npm. Modifying it directly can lead to inconsistencies in dependency versions across different environments or developers.
+
+## Q ) What is node_modules? Is it a good idea to push that on git?
+`node_modules` is a directory where npm installs packages that a project depends on. It's generally not a good idea to push `node_modules` to Git because it can be very large and contains binaries that are specific to the platform. Instead, `package.json` and `package-lock.json` are used to specify dependencies, which developers can use to install the same versions of packages locally.
+
+## Q ) What is the dist folder?
+The `dist` (distribution) folder contains the output of the build process. It typically includes optimized and minified files ready for deployment, separate from the source code. It is this folder that is often deployed to servers or used for distribution to end-users.
+
+## Q ) What is Browserslist?
+Browserslist is a configuration file or query string used by tools like Autoprefixer, Babel, and TypeScript to target specific browsers and their versions. It helps these tools determine which features and polyfills to include based on browser support requirements.
+
+## Additional topics to read about:
+
+- **vite**: A frontend build tool that aims for fast development with features like pre-bundling and instant server start.
+- **^ (caret) and ~ (tilde)**: Symbols used in `package.json` to specify package version ranges.
+- **Script types in HTML**: Different types of scripts like `text/javascript`, `module`, and `defer` as described in the MDN documentation.
+
+## References:
+- [Parcel Documentation](https://parceljs.org/getting-started/webapp/)
+- [Parcel on Production](https://parceljs.org/features/production/)
+- [BrowsersList](https://browserslist.dev/)
+
