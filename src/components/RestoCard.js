@@ -1,7 +1,9 @@
-import RatingStar from "./RatingStar"
+import RatingStar from "./RatingStar";
 import { CDN_URL } from "../utils/constant";
+import { useNavigate } from "react-router-dom";
 
 const RestoCard = ({
+  id,
   name,
   cuisines,
   avgRating,
@@ -10,19 +12,18 @@ const RestoCard = ({
   areaName,
   costForTwo,
 }) => {
+  const navigate = useNavigate();
   return (
-    <div className="resto-card">
+    <div className="resto-card" onClick={() => navigate(`/restaurant/${id}`)}>
       <div>
-        <img
-          src={`${CDN_URL}${cloudinaryImageId}`}
-        />
+        <img src={`${CDN_URL}${cloudinaryImageId}`} />
       </div>
       <div className="resto-content">
         <h3>{name}</h3>
         <div className="subtitle-1">
           <h5 className="rating">
             <RatingStar />
-            {avgRating} stars
+            {avgRating}
           </h5>
           <span>•</span>
           <h5>{sla.deliveryTime} mins</h5>
