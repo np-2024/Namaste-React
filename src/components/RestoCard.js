@@ -16,7 +16,7 @@ const RestoCard = ({
   return (
     <div className="resto-card" onClick={() => navigate(`/restaurant/${id}`)}>
       <div>
-        <img src={`${CDN_URL}${cloudinaryImageId}`} />
+        <img loading="lazy" src={`${CDN_URL}${cloudinaryImageId}`} />
       </div>
       <div className="resto-content">
         <h3>{name}</h3>

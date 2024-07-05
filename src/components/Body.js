@@ -3,11 +3,13 @@ import RestoCard from "./RestoCard";
 import Shimmer from "./Shimmer";
 import { SWIGGY_API } from "../utils/constant";
 import NotFound from "./NotFound";
+import useOnlineStatus from "../hooks/useOnlineStatus";
 
 const Body = () => {
   const [restoList, setRestoList] = useState([]);
-  const [searchInput, setSearchInput] = useState("");
   const [searchedList, setSearchList] = useState([]);
+  const [searchInput, setSearchInput] = useState("");
+  let onlineStatus = useOnlineStatus();
 
   useEffect(() => {
     fetchRestoData();
@@ -36,17 +38,30 @@ const Body = () => {
     setRestoList(filteredList);
   };
 
+  const handleSortByDelivery = () => {
+    const filteredList = restoList.sort(
+      (a, b) => a.info.sla.deliveryTime - b.info.sla.deliveryTime
+    );
+    console.log(filteredList)
+    setRestoList(filteredList);
+    setSearchList(filteredList)
+  };
+
+  if (onlineStatus === false) {
+    return <h1>Looks like you are offline</h1>;
+  }
+
   return (
     <div className="body">
       <div className="body-header">
         <h2>What's on your mind?</h2>
-        <div class="searchbar-container">
+        <div className="searchbar-container">
           <div className="input-wrapper">
             <input
               type="text"
-              class="search-input"
+              className="search-input"
               placeholder="Search for restaurants"
-              maxlength="200"
+              maxLength="200"
               value={searchInput}
               onChange={(e) => setSearchInput(e.target.value)}
             />
@@ -67,12 +82,15 @@ const Body = () => {
         <button className="filter-btn" onClick={handleFilterClicked}>
           Top Rated Restaurants
         </button>
+        <button className="filter-btn" onClick={handleSortByDelivery}>
+          Delivery Time
+        </button>
       </div>
       <div className="resto-container">
         {restoList?.length === 0 ? (
           <Shimmer />
         ) : searchedList?.length === 0 ? (
-          <NotFound text={"No Restaurants Found!"}/>
+          <NotFound text={"No Restaurants Found!"} />
         ) : (
           searchedList?.map((resData) => {
             return <RestoCard key={resData.info.id} {...resData.info} />;

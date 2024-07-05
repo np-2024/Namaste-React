@@ -1,3 +1,6 @@
+body{
+  margin: 0;
+}
 .app {
   display: flex;
   flex-direction: column;
@@ -26,12 +29,18 @@
 .logo-container {
   height: 60px;
   width: 65px;
+  cursor: pointer;
 }
 
 .logo-container > img {
   height: 100%;
   width: 100%;
   border-radius: 50%;
+}
+
+.navbar-container{
+  display: flex;
+  align-items: center;
 }
 
 .navbar-container > ul {
@@ -156,6 +165,7 @@
 
 .filter > .filter-btn {
   cursor: pointer;
+  margin-right: 8px;
 }
 
 /* Shimmer.css */
@@ -213,7 +223,7 @@
   padding: 10px;
 }
 
-.restaurant-wrapper > .restaurant-data {
+.restaurant-data {
   display: flex;
   align-items: center;
   gap: 8px;
@@ -236,35 +246,59 @@
 .restaurant-menu-wrapper > p {
   margin: 8px 0;
   width: 60%;
-  color:rgba(2, 6, 12, 0.6);
+  color: rgba(2, 6, 12, 0.6);
 }
-.highlight{
+.highlight {
   background-color: lightblue;
 }
-.restaurant-menu-list{
+.restaurant-menu-list {
   list-style: none;
   margin: 20px 0;
   padding: 0;
 }
-.menu-img-wrapper{
+.menu-img-wrapper {
   display: flex;
   justify-content: flex-end;
-  min-width: 160px;
+  max-width: 160px;
   margin-left: auto;
   max-height: 175px;
 }
-.menu-img{
+.menu-img {
   border-radius: 20px;
-  width: 50%;
-  height: 90%;
+  width: 100%;
+  height: 100%;
 }
-.restaurant-menu-wrapper{
+.restaurant-menu-wrapper {
   display: flex;
   justify-content: space-between;
 }
-.restaurant-dec-wrapper{
+.restaurant-dec-wrapper {
   width: 60%;
 }
-.menu-shimmer-wrapper{
+.menu-shimmer-wrapper {
   width: 100%;
+}
+.backbtn {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+.restaurant-header {
+  background-color: #7671710d;
+  padding: 10px 6px;
+}
+button {
+  background: white;
+  border: none;
+  border-radius: 30px;
+  background-color: #f48238;
+  padding: 10px;
+  box-shadow: 0 10px 20px -8px rgba(0, 0, 0,.7);
+}
+
+button:hover{
+  background-color: #f8934c;
 }
