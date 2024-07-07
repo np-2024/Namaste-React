@@ -15,7 +15,7 @@ const RestoCard = ({
   const navigate = useNavigate();
   return (
     <div
-      className="cursor-pointer p-2 h-auto w-64 inline-block transition ease-in-out hover:scale-90"
+      className="cursor-pointer p-2 h-auto w-64 inline-block transition ease-in-out hover:scale-90 hover:bg-gray-200 rounded-lg z-10"
       onClick={() => navigate(`/restaurant/${id}`)}
     >
       <div>
