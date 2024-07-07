@@ -9,14 +9,20 @@ const Header = () => {
   const onlineStatus = useOnlineStatus();
 
   return (
-    <div className="header">
-      <div onClick={() => navigate("/")} className="logo-container">
-        <img loading="lazy" src={LOGO_URL} />
+    <div className="flex justify-between items-center fixed top-0 bottom-0 left-0 right-0 bg-white pl-5 pr-5 h-14 z-10">
+      <div onClick={() => navigate("/")} className="h-14 w-14 cursor-pointer">
+        <img
+          loading="lazy"
+          src={LOGO_URL}
+          className="h-full w-full  rounded-full"
+        />
       </div>
-      <div className="navbar-container">
-        Online Status:
-        <div>{onlineStatus === false ? <span>🔴</span> : <span>🟢</span>}</div>
-        <ul>
+      <div>
+        Online Status:{" "}
+        {onlineStatus === false ? <span>🔴</span> : <span>🟢</span>}
+      </div>
+      <div className="flex items-center">
+        <ul className="flex items-center gap-6 list-none text-base no-underline font-semibold text-lg">
           <li>
             <Link to={"/"}>Home</Link>
           </li>
@@ -29,15 +35,15 @@ const Header = () => {
           <li>
             <Link to={"/cart"}>Cart</Link>
           </li>
-          <button
-            className="authButton"
-            onClick={() =>
-              setAuthState((prev) => (prev == "Login" ? "Logout" : "Login"))
-            }
-          >
-            {authState}
-          </button>
         </ul>
+        <button
+          className="ml-2 p-2 w-20 cursor-pointer"
+          onClick={() =>
+            setAuthState((prev) => (prev == "Login" ? "Logout" : "Login"))
+          }
+        >
+          {authState}
+        </button>
       </div>
     </div>
   );

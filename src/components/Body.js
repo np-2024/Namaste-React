@@ -52,14 +52,14 @@ const Body = () => {
   }
 
   return (
-    <div className="body">
+    <div className="p-5 flex flex-col justify-center gap-2 mt-14">
       <div className="body-header">
-        <h2>What's on your mind?</h2>
-        <div className="searchbar-container">
-          <div className="input-wrapper">
+        <h2 className="m-0 mb-2 font-extrabold text-2xl">What's on your mind?</h2>
+        <div className="flex gap-2">
+          <div className="flex border border-slate-500 border-solid pt-2 pb-2 pl-3 pr-3">
             <input
               type="text"
-              className="search-input"
+              className="text-sm w-full h-full border-0 outline-0" 
               placeholder="Search for restaurants"
               maxLength="200"
               value={searchInput}
@@ -70,23 +70,23 @@ const Body = () => {
                 setSearchInput("");
                 fetchRestoData();
               }}
-              style={{ cursor: "pointer" }}
+              className="cursor-pointer"
             >
               ✖
             </span>
           </div>
         </div>
       </div>
-      <hr style={{ width: "100%" }} />
-      <div className="filter">
-        <button className="filter-btn" onClick={handleFilterClicked}>
+      <hr className="w-full"/>
+      <div>
+        <button className="mr-2" onClick={handleFilterClicked}>
           Top Rated Restaurants
         </button>
-        <button className="filter-btn" onClick={handleSortByDelivery}>
+        <button onClick={handleSortByDelivery}>
           Delivery Time
         </button>
       </div>
-      <div className="resto-container">
+      <div className="flex flex-wrap">
         {restoList?.length === 0 ? (
           <Shimmer />
         ) : searchedList?.length === 0 ? (

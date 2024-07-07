@@ -14,14 +14,21 @@ const RestoCard = ({
 }) => {
   const navigate = useNavigate();
   return (
-    <div className="resto-card" onClick={() => navigate(`/restaurant/${id}`)}>
+    <div
+      className="cursor-pointer p-2 h-auto w-64 inline-block transition ease-in-out hover:scale-90"
+      onClick={() => navigate(`/restaurant/${id}`)}
+    >
       <div>
-        <img loading="lazy" src={`${CDN_URL}${cloudinaryImageId}`} />
+        <img
+          loading="lazy"
+          className="h-56 w-full rounded-lg"
+          src={`${CDN_URL}${cloudinaryImageId}`}
+        />
       </div>
-      <div className="resto-content">
-        <h3>{name}</h3>
-        <div className="subtitle-1">
-          <h5 className="rating">
+      <div>
+        <h3 className="m-0 mb-1 font-semibold">{name}</h3>
+        <div className="flex gap-1 items-center mb-2">
+          <h5 className="flex gap-1">
             <RatingStar />
             {avgRating}
           </h5>
@@ -30,9 +37,9 @@ const RestoCard = ({
           <span>•</span>
           <h5>{costForTwo}</h5>
         </div>
-        <div className="subtitle-2">
-          <h5>{cuisines.join(", ")}</h5>
-          <h5>{areaName}</h5>
+        <div>
+          <h5 className="m-0 text-sm">{cuisines.join(", ")}</h5>
+          <h5 className="m-0 text-sm">{areaName}</h5>
         </div>
       </div>
     </div>

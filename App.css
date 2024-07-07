@@ -290,15 +290,3 @@ body{
   background-color: #7671710d;
   padding: 10px 6px;
 }
-button {
-  background: white;
-  border: none;
-  border-radius: 30px;
-  background-color: #f48238;
-  padding: 10px;
-  box-shadow: 0 10px 20px -8px rgba(0, 0, 0,.7);
-}
-
-button:hover{
-  background-color: #f8934c;
-}

@@ -22,44 +22,47 @@ const RestaurantMenu = () => {
   return restaurantData?.length === 0 ? (
     <RestaurantMenuShimmer />
   ) : (
-    <div className="restaurant-wrapper">
-      <button onClick={() => navigate("/")} className="backbtn">
+    <div className="p-3 mt-14">
+      <button
+        onClick={() => navigate("/")}
+        className="m-0 flex gap-2 items-center mb-3 cursor-pointer"
+      >
         <div>◀</div>Back to Home
       </button>
       {restaurantData && restaurantData?.name && (
-        <div className="restaurant-header">
-          <h1 className="restaurant-name">{restaurantData?.name}</h1>
-          <div className="restaurant-data">
-            <h5 className="rating">
+        <div className="pt-3 pr-2">
+          <h1 className="m-1 font-semibold text-4xl">{restaurantData?.name}</h1>
+          <div className="flex items-center gap-2">
+            <h5 className="flex gap-1 m-0">
               <RatingStar />
               {restaurantData?.avgRating} ( {restaurantData?.totalRatingsString}{" "}
               )
             </h5>
             <span>•</span>
-            <h5>{restaurantData?.sla?.deliveryTime} mins</h5>
+            <h5 className="m-0">{restaurantData?.sla?.deliveryTime} mins</h5>
             <span>•</span>
-            <h5>{restaurantData?.costForTwoMessage}</h5>
+            <h5 className="m-0">{restaurantData?.costForTwoMessage}</h5>
           </div>
         </div>
       )}
       {restaurantMenu?.length === 0 ? (
         <RestaurantMenuShimmer />
       ) : (
-        <ul className="restaurant-menu-list">
+        <ul className="list-none m-0 p-0 mt-5 mb-5">
           {restaurantMenu?.map(({ card }) => (
             <li key={card.info.id}>
-              <div className="restaurant-menu-wrapper">
-                <div className="restaurant-dec-wrapper">
-                  <div className="restaurant-desc">
-                    <div>
+              <div className="flex justify-between">
+                <div className="w-2/3">
+                  <div className="flex items-start flex-col gap-1">
+                    <h4 className="m-0">
                       {card.info.itemAttribute.vegClassifier === "VEG" ? (
                         <span>🟢</span>
                       ) : (
                         <span>🔴</span>
                       )}
-                    </div>
-                    <h4>{card.info.name}</h4>
-                    <h4 className="highlight">
+                      {card.info.name}
+                    </h4>
+                    <h4 className="bg-blue-200 m-0">
                       {card.info.price
                         ? formatPrice(card.info.price)
                         : formatPrice(card.info.defaultPrice)}
@@ -67,10 +70,10 @@ const RestaurantMenu = () => {
                   </div>
                   <p>{card.info.description}</p>
                 </div>
-                <div className="menu-img-wrapper">
+                <div className="flex justify-end max-w-40 ml-auto max-h-44">
                   <img
                     loading="lazy"
-                    className="menu-img"
+                    className="w-full h-full"
                     src={`${SWIGGY_ASSETS_API}${card.info.imageId}`}
                   />
                 </div>
