@@ -1,40 +1,40 @@
 import { formatPrice } from "../utils/utilFunctions";
 import { SWIGGY_ASSETS_API } from "../utils/constant";
 
-const ItemList = (card) => {
+const ItemList = ({
+  info: { id, name, itemAttribute, price, defaultPrice, description, imageId },
+}) => {
   return (
-    <li key={card.info.id} className="mb-2 mt-2">
-    <div className="flex justify-between">
-      <div className="">
-        <div className="flex items-start flex-col gap-1">
-          <h4 className="m-0">
-            {card.info.itemAttribute.vegClassifier === "VEG" ? (
-              <span>🟢</span>
-            ) : (
-              <span>🔴</span>
-            )}
-            {card.info.name}
-          </h4>
-          <h4 className="bg-blue-200 m-0">
-            {card.info.price
-              ? formatPrice(card.info.price)
-              : formatPrice(card.info.defaultPrice)}
-          </h4>
+    <li key={id} className="mb-2 mt-2">
+      <div className="flex justify-between">
+        <div className="">
+          <div className="flex items-start flex-col gap-1">
+            <h4 className="m-0">
+              {itemAttribute?.vegClassifier === "VEG" ? (
+                <span>🟢</span>
+              ) : (
+                <span>🔴</span>
+              )}
+              {name}
+              <span className="bg-blue-200 m-0 ml-2">
+                {price ? formatPrice(price) : formatPrice(defaultPrice)}
+              </span>
+            </h4>
+          </div>
+          <p>{description}</p>
         </div>
-        <p>{card.info.description}</p>
+        <div className="flex justify-end max-w-40 ml-auto max-h-40">
+          <img
+            loading="lazy"
+            className="w-full h-full"
+            alt="menu-img"
+            src={`${SWIGGY_ASSETS_API}${imageId}`}
+          />
+        </div>
       </div>
-      <div className="flex justify-end max-w-40 ml-auto max-h-40">
-        <img
-          loading="lazy"
-          className="w-full h-full"
-          alt="menu-img"
-          src={`${SWIGGY_ASSETS_API}${card?.info?.imageId}`}
-        />
-      </div>
-    </div>
-    <hr />
-  </li>
-  )
-}
+      <hr />
+    </li>
+  );
+};
 
-export default ItemList
+export default ItemList;
