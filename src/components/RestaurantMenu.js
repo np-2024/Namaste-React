@@ -3,8 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import RatingStar from "./RatingStar";
 import RestaurantMenuShimmer from "./RestaurantMenuShimmer";
 import useRestaurantMenu from "../hooks/useRestaurantMenu";
-import { formatPrice } from "../utils/utilFunctions";
-import { SWIGGY_ASSETS_API } from "../utils/constant";
+import RestaurantCategory from "./RestaurantCategory";
 
 const RestaurantMenu = () => {
   const { resId } = useParams();
@@ -30,7 +29,7 @@ const RestaurantMenu = () => {
         <div>◀</div>Back to Home
       </button>
       {restaurantData && restaurantData?.name && (
-        <div className="pt-3 pr-2">
+        <div className="pt-3 pr-2" key={restaurantData?.id}>
           <h1 className="m-1 font-semibold text-4xl">{restaurantData?.name}</h1>
           <div className="flex items-center gap-2">
             <h5 className="flex gap-1 m-0">
@@ -48,40 +47,10 @@ const RestaurantMenu = () => {
       {restaurantMenu?.length === 0 ? (
         <RestaurantMenuShimmer />
       ) : (
-        <ul className="list-none m-0 p-0 mt-5 mb-5">
-          {restaurantMenu?.map(({ card }) => (
-            <li key={card.info.id}>
-              <div className="flex justify-between">
-                <div className="w-2/3">
-                  <div className="flex items-start flex-col gap-1">
-                    <h4 className="m-0">
-                      {card.info.itemAttribute.vegClassifier === "VEG" ? (
-                        <span>🟢</span>
-                      ) : (
-                        <span>🔴</span>
-                      )}
-                      {card.info.name}
-                    </h4>
-                    <h4 className="bg-blue-200 m-0">
-                      {card.info.price
-                        ? formatPrice(card.info.price)
-                        : formatPrice(card.info.defaultPrice)}
-                    </h4>
-                  </div>
-                  <p>{card.info.description}</p>
-                </div>
-                <div className="flex justify-end max-w-40 ml-auto max-h-44">
-                  <img
-                    loading="lazy"
-                    className="w-full h-full"
-                    src={`${SWIGGY_ASSETS_API}${card.info.imageId}`}
-                  />
-                </div>
-              </div>
-              <hr />
-            </li>
-          ))}
-        </ul>
+        restaurantMenu?.map(({ card: { card } }) => {
+          const { itemCards, title } = card;
+          return <RestaurantCategory itemCards={itemCards} title={title} key={title}/>;
+        })
       )}
     </div>
   );

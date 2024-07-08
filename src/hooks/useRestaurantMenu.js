@@ -13,10 +13,7 @@ const useRestaurantMenu = (resId) => {
       `https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=19.07480&lng=72.88560&restaurantId=${id}&catalog_qa=undefined&submitAction=ENTER`
     );
     const json = await response.json();
-    const { itemCards } =
-      json?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card
-        ?.card;
-    setRestaurantMenu(itemCards);
+    setRestaurantMenu( json?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards.slice(2));
     setRestaurantData(json?.data?.cards[2]?.card?.card?.info);
   };
   return [restaurantData, restaurantMenu];
