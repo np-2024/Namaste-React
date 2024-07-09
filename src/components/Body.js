@@ -1,16 +1,18 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import RestoCard from "./RestoCard";
 import Shimmer from "./Shimmer";
 import { SWIGGY_API } from "../utils/constant";
 import NotFound from "./NotFound";
 import useOnlineStatus from "../hooks/useOnlineStatus";
 import withOpenStatus from "../hof/withOpenStatus";
+import UserContext from "../context/UserContext";
 
 const Body = () => {
   const [restoList, setRestoList] = useState([]);
   const [searchedList, setSearchList] = useState([]);
   const [searchInput, setSearchInput] = useState("");
   let onlineStatus = useOnlineStatus();
+  const { loggedInUser } = useContext(UserContext);
 
   useEffect(() => {
     fetchRestoData();
@@ -58,7 +60,7 @@ const Body = () => {
     <div className="p-5 flex flex-col justify-center gap-2 mt-14">
       <div className="body-header">
         <h2 className="m-0 mb-2 font-extrabold text-2xl">
-          What's on your mind?
+          Hi {loggedInUser},<br/> What's on your mind?
         </h2>
         <div className="flex gap-2">
           <div className="flex border border-slate-500 border-solid pt-2 pb-2 pl-3 pr-3 w-72 rounded-md">
@@ -89,7 +91,7 @@ const Body = () => {
         </button>
         <button onClick={handleSortByDelivery}>Delivery Time</button>
       </div>
-      <div className="flex flex-wrap">
+      <div className="flex flex-wrap z-0">
         {restoList?.length === 0 ? (
           <Shimmer />
         ) : searchedList?.length === 0 ? (
