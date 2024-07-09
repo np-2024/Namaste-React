@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import RatingStar from "./RatingStar";
 import RestaurantMenuShimmer from "./RestaurantMenuShimmer";
@@ -9,6 +9,7 @@ const RestaurantMenu = () => {
   const { resId } = useParams();
   const navigate = useNavigate();
   const [restaurantData, restaurantMenu] = useRestaurantMenu(resId);
+  const [showIndex, setShowIndex] = useState(0);
 
   useEffect(() => {
     window.scrollTo({
@@ -29,9 +30,9 @@ const RestaurantMenu = () => {
         <div>◀</div>Back to Home
       </button>
       {restaurantData && restaurantData?.name && (
-        <div className="pt-3 pr-2" key={restaurantData?.id}>
+        <div className="pt-3 pr-2 text-center">
           <h1 className="m-1 font-semibold text-4xl">{restaurantData?.name}</h1>
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 justify-center">
             <h5 className="flex gap-1 m-0">
               <RatingStar />
               {restaurantData?.avgRating} ( {restaurantData?.totalRatingsString}{" "}
@@ -44,14 +45,25 @@ const RestaurantMenu = () => {
           </div>
         </div>
       )}
-      {restaurantMenu?.length === 0 ? (
-        <RestaurantMenuShimmer />
-      ) : (
-        restaurantMenu?.map(({ card: { card } }) => {
-          const { itemCards, title } = card;
-          return <RestaurantCategory itemCards={itemCards} title={title} key={title}/>;
-        })
-      )}
+      <div className="mx-80">
+        {restaurantMenu?.length === 0 ? (
+          <RestaurantMenuShimmer />
+        ) : (
+          restaurantMenu?.map(({ card: { card } }, index) => {
+            const { itemCards, title } = card;
+            return (
+              <RestaurantCategory
+                itemCards={itemCards}
+                title={title}
+                key={index}
+                currentIndex={index}
+                showIndex={showIndex === index ? true : false}
+                setShowIndex={(i) => setShowIndex(i)}
+              />
+            );
+          })
+        )}
+      </div>
     </div>
   );
 };

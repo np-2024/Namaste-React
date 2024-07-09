@@ -37,6 +37,7 @@ const Body = () => {
   const handleFilterClicked = () => {
     const filteredList = restoList.filter((resto) => resto.info.avgRating > 4);
     setRestoList(filteredList);
+    setSearchList(filteredList);
   };
 
   const handleSortByDelivery = () => {
