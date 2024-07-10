@@ -21,7 +21,7 @@ const RestaurantCategory = ({
         </div>
         {showIndex &&
           itemCards?.map(({ card }) => (
-            <ItemList {...card} key={card.info.id} />
+            <ItemList card={card} key={card.info.id} />
           ))}
       </div>
     )

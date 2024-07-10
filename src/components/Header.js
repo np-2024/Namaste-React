@@ -2,13 +2,15 @@ import { useState, useContext } from "react";
 import { LOGO_URL } from "../utils/constant";
 import { Link, useNavigate } from "react-router-dom";
 import useOnlineStatus from "../hooks/useOnlineStatus";
-import UserContext from "../context/UserContext";
+import { useSelector } from "react-redux";
 
 const Header = () => {
   const navigate = useNavigate();
   const [authState, setAuthState] = useState("Login");
   const onlineStatus = useOnlineStatus();
-  const { loggedInUser } = useContext(UserContext);
+
+  //subscribing to store using selector
+  const cartItems = useSelector((store) => store.cart.items);
 
   return (
     <div className="flex justify-between items-center fixed top-0 bottom-0 left-0 right-0 bg-white pl-5 pr-5 h-14 z-10 shadow-lg">
@@ -35,7 +37,7 @@ const Header = () => {
             <Link to={"/contact"}>Contact</Link>
           </li>
           <li>
-            <Link to={"/cart"}>Cart</Link>
+            <Link to={"/cart"}>Cart</Link> [{cartItems?.length} Items]
           </li>
         </ul>
         {/* <h2 className="ml-2 font-semibold text-lg">{loggedInUser}</h2> */}

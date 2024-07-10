@@ -45,7 +45,7 @@ const RestaurantMenu = () => {
           </div>
         </div>
       )}
-      <div className="mx-80">
+      <div className="w-6/12 m-auto">
         {restaurantMenu?.length === 0 ? (
           <RestaurantMenuShimmer />
         ) : (
