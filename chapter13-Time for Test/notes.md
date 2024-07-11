@@ -56,6 +56,22 @@
     ```
 - Install testing library jestDom
   - `npm i -D @testing-library/jest-dom`
+- Configure package.json scripts to avoid running test command repeatedly
+  - `"watch-test": "jest --watch"`
+
+## Things jest testing library and configs do not understand
+
+- react-router-dom --> use BrowserRouter and wrap app inside it
+- react-redux --> use Provider, provide store and wrap app inside it
+- fetch() --> write mockfn jest.fn() --> check Search.test.js
+- window object --> write jest.fn() and clear after test
+
+## Helpers
+
+- describe
+- test or it
+- beforeAll and afterAll
+- beforeEach and afterEach
 
 ## References:
 

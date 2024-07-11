@@ -2,7 +2,7 @@ import RatingStar from "./RatingStar";
 import { CDN_URL } from "../utils/constant";
 import { useNavigate } from "react-router-dom";
 
-const RestoCard = ({resData}) => {
+const RestoCard = ({ resData }) => {
   const {
     id,
     name,
@@ -12,7 +12,7 @@ const RestoCard = ({resData}) => {
     cloudinaryImageId,
     areaName,
     costForTwo,
-  } = resData
+  } = resData;
 
   const navigate = useNavigate();
   return (

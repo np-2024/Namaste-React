@@ -38,12 +38,10 @@ const Header = () => {
           </li>
           <li className="relative">
             <Link to={"/cart"}>
-              🛒
-              {cartItems?.length > 0 && (
-                <div className="text-xs absolute bg-green-500 rounded-full pl-1 pr-1 top-4 right-0">
-                  {cartItems?.length}
-                </div>
-              )}
+              Cart🛒
+              <div data-testid="cartCount" className="text-xs absolute bg-green-500 rounded-full pl-1 pr-1 top-4 right-0">
+                {cartItems?.length}
+              </div>
             </Link>
           </li>
         </ul>

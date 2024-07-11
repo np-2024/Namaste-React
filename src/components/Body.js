@@ -18,13 +18,6 @@ const Body = () => {
     fetchRestoData();
   }, []);
 
-  useEffect(() => {
-    const searchResponse = restoList.filter((res) =>
-      res.info.name.toLowerCase().includes(searchInput.toLowerCase())
-    );
-    setSearchList(searchResponse);
-  }, [searchInput]);
-
   const fetchRestoData = async () => {
     const response = await fetch(SWIGGY_API);
     const json = await response.json();
@@ -36,8 +29,15 @@ const Body = () => {
     );
   };
 
+  const handleSearch = () => {
+    const searchResponse = restoList?.filter((res) =>
+      res.info.name.toLowerCase().includes(searchInput.toLowerCase())
+    );
+    setSearchList(searchResponse);
+  };
+
   const handleFilterClicked = () => {
-    const filteredList = restoList.filter((resto) => resto.info.avgRating > 4);
+    const filteredList = restoList?.filter((resto) => resto.info.avgRating > 4);
     setRestoList(filteredList);
     setSearchList(filteredList);
   };
@@ -65,6 +65,7 @@ const Body = () => {
         <div className="flex gap-2">
           <div className="flex border border-slate-500 border-solid pt-2 pb-2 pl-3 pr-3 w-72 rounded-md">
             <input
+              data-testid="searchInput"
               type="text"
               className="text-sm w-full h-full border-0 outline-0"
               placeholder="Search for restaurants"
@@ -72,15 +73,9 @@ const Body = () => {
               value={searchInput}
               onChange={(e) => setSearchInput(e.target.value)}
             />
-            <span
-              onClick={() => {
-                setSearchInput("");
-                fetchRestoData();
-              }}
-              className="cursor-pointer"
-            >
-              ✖
-            </span>
+            <button onClick={handleSearch} className="p-1">
+              Search
+            </button>
           </div>
         </div>
       </div>
@@ -92,19 +87,13 @@ const Body = () => {
         <button onClick={handleSortByDelivery}>Delivery Time</button>
       </div>
       <div className="flex flex-wrap z-0">
-        {restoList?.length === 0 ? (
-          <Shimmer />
-        ) : searchedList?.length === 0 ? (
-          <NotFound text={"No Restaurants Found!"} />
-        ) : (
-          searchedList?.map((resData) => {
-            return resData?.info?.isOpen ? (
-              <RestoCardOpen key={resData?.info?.id} resData={resData?.info} />
-            ) : (
-              <RestoCard key={resData?.info?.id} resData={resData?.info} />
-            );
-          })
-        )}
+        {searchedList?.map((resData) => {
+          return resData?.info?.isOpen ? (
+            <RestoCardOpen key={resData?.info?.id} resData={resData?.info} />
+          ) : (
+            <RestoCard key={resData?.info?.id} resData={resData?.info} />
+          );
+        })}
       </div>
     </div>
   );

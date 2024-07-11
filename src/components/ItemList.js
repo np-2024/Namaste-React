@@ -12,7 +12,7 @@ const ItemList = ({ card, removeBtn }) => {
   const handleRemoveItem = (item) => dispatch(removeItem(item.info.id));
 
   return (
-    <div key={id} className="mb-2 mt-2 border-b-2 flex justify-between p-2">
+    <div key={id} data-testid="foodItems" className="mb-2 mt-2 border-b-2 flex justify-between p-2">
       <div className="w-9/12 text-left">
         {itemAttribute?.vegClassifier === "VEG" ? (
           <span>🟢</span>
