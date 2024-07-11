@@ -2,16 +2,18 @@ import RatingStar from "./RatingStar";
 import { CDN_URL } from "../utils/constant";
 import { useNavigate } from "react-router-dom";
 
-const RestoCard = ({
-  id,
-  name,
-  cuisines,
-  avgRating,
-  sla,
-  cloudinaryImageId,
-  areaName,
-  costForTwo,
-}) => {
+const RestoCard = ({resData}) => {
+  const {
+    id,
+    name,
+    cuisines,
+    avgRating,
+    sla,
+    cloudinaryImageId,
+    areaName,
+    costForTwo,
+  } = resData
+
   const navigate = useNavigate();
   return (
     <div
@@ -33,12 +35,12 @@ const RestoCard = ({
             {avgRating}
           </h5>
           <span>•</span>
-          <h5>{sla.deliveryTime} mins</h5>
+          <h5>{sla?.deliveryTime} mins</h5>
           <span>•</span>
           <h5>{costForTwo}</h5>
         </div>
         <div>
-          <h5 className="m-0 text-sm">{cuisines.join(", ")}</h5>
+          <h5 className="m-0 text-sm">{cuisines?.join(", ")}</h5>
           <h5 className="m-0 text-sm">{areaName}</h5>
         </div>
       </div>

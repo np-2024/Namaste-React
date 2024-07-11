@@ -60,7 +60,7 @@ const Body = () => {
     <div className="p-5 flex flex-col justify-center gap-2 mt-14">
       <div className="body-header">
         <h2 className="m-0 mb-2 font-extrabold text-2xl">
-          Hi {loggedInUser},<br/> What's on your mind?
+          Hi {loggedInUser},<br /> What's on your mind?
         </h2>
         <div className="flex gap-2">
           <div className="flex border border-slate-500 border-solid pt-2 pb-2 pl-3 pr-3 w-72 rounded-md">
@@ -99,9 +99,9 @@ const Body = () => {
         ) : (
           searchedList?.map((resData) => {
             return resData?.info?.isOpen ? (
-              <RestoCardOpen key={resData.info.id} {...resData.info} />
+              <RestoCardOpen key={resData?.info?.id} resData={resData?.info} />
             ) : (
-              <RestoCard key={resData.info.id} {...resData.info} />
+              <RestoCard key={resData?.info?.id} resData={resData?.info} />
             );
           })
         )}

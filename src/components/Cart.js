@@ -16,7 +16,7 @@ const Cart = () => {
         Clear Cart
       </button>
       <div className="w-6/12 m-auto">
-        {cartItems.map((item) => (
+        {cartItems?.map((item) => (
           <ItemList card={item} key={item?.id} removeBtn />
         ))}
       </div>

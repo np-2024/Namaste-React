@@ -9,7 +9,7 @@ const ItemList = ({ card, removeBtn }) => {
 
   const dispatch = useDispatch();
   const handleAddItem = (item) => dispatch(addItem(item));
-  const handleRemoveItem = (item) => dispatch(removeItem(item));
+  const handleRemoveItem = (item) => dispatch(removeItem(item.info.id));
 
   return (
     <div key={id} className="mb-2 mt-2 border-b-2 flex justify-between p-2">
@@ -23,7 +23,7 @@ const ItemList = ({ card, removeBtn }) => {
         <span className="bg-blue-200 m-0 ml-2">
           {price ? formatPrice(price) : formatPrice(defaultPrice)}
         </span>
-        <p>{description}</p>
+        <p>{description.slice(0, 100)}...</p>
       </div>
       <div className="w-2/12 relative">
         {imageId && (
